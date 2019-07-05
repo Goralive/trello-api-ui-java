@@ -4,9 +4,7 @@ import com.trello.api.TrelloRestClient;
 import com.trello.api.models.Card;
 import com.trello.ui.core.BrowserFactory;
 import com.trello.ui.pages.CardPage;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.util.Date;
@@ -22,13 +20,13 @@ public class CardActions extends BrowserFactory {
 
     Card card = new Card("Test_Card_" + new Date().getTime());
 
-    @BeforeTest
+    @BeforeMethod
     public void prepareData() throws IOException {
         card = client.cardsService.createCard("5d0003dfa2305c4a000a6238", card).execute().body();
         cardPage.openCardPage();
     }
 
-    @AfterTest
+    @AfterMethod
     public void clearData() throws IOException {
         client.cardsService.deleteCard(card.id).execute();
     }
