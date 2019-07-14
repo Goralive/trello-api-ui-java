@@ -15,14 +15,14 @@ import static org.testng.Assert.assertTrue;
 public class CardActions extends BrowserFactory {
 
     public TrelloRestClient client = new TrelloRestClient();
-
     public CardPage cardPage = new CardPage();
 
     Card card = new Card("Test_Card_" + new Date().getTime());
+    String idList = "5d0003dfa2305c4a000a6238";
 
     @BeforeMethod
     public void prepareData() throws IOException {
-        card = client.cardsService.createCard("5d0003dfa2305c4a000a6238", card).execute().body();
+        card = client.cardsService.createCard(idList, card).execute().body();
         cardPage.openCardPage();
     }
 
@@ -34,6 +34,7 @@ public class CardActions extends BrowserFactory {
     @Test
     public void createCard() {
         assertTrue(cardPage.cardIsCreated());
+        System.out.println(card.id);
     }
 
     @Test
@@ -42,9 +43,8 @@ public class CardActions extends BrowserFactory {
     }
 
     @Test
-    public void moveCard() {
-        //   cardPage.moveToList(""):
-
+    public void checklistWasCreated() {
+        client.cardsService.createChecklists(card.id,"Checklist was created");
     }
 
     @Test

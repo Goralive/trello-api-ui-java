@@ -21,4 +21,7 @@ public interface CardsService {
     @GET("user")
     Call<Card> getUserDetails(@Header("Authorization") String credentials);
 
+    @POST("/cards/{id}/checklists")
+    Call<Card> createChecklists(@Path("id") String id, @Query("name") String name);
+
 }

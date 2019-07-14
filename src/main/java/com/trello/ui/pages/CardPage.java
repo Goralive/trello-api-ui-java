@@ -18,6 +18,7 @@ import static com.trello.ui.core.Constants.*;
 public class CardPage extends BrowserFactory {
 
     private static final String PATH = "b/Iceo5BlK/igore4ek";
+    private String testCardUrl;
 
     public Element testedCardElem = new Element(By.cssSelector("#board a[href*='test']"),"Created card contains 'Test'");
     public Element cardDetailWindowElem = new Element(By.cssSelector(".card-detail-window"),"Card is opened in pop-up window");
@@ -37,5 +38,9 @@ public class CardPage extends BrowserFactory {
     public boolean openTestCard() {
         testedCardElem.click();
         return cardDetailWindowElem.isElementPresent();
+    }
+
+    public void openCreatedTestCard () {
+
     }
 }
